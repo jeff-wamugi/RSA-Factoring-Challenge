@@ -1,0 +1,36 @@
+#!/usr/bin/python3
+
+"""
+Factorize as many numbers as possible into a product of two smaller numbers.
+    Output format: n=p*q
+        one factorization per line
+        p and q don’t have to be prime numbers   
+"""
+import sys
+
+
+def factorize():
+    """
+    Search file to convert number and format n=p*q
+    """
+    try:
+        file = sys.argv[1]
+        with open(file) as f:
+            for number in f:
+                number = int(number)
+                if number % 2 == 0:
+                        print("{}={}*{}".format(number, number // 2, 2))
+                        continue
+                i = 3
+                while i < number // 2:
+                    if number % i == 0:
+                        print("{}={}*{}".format(number, number // i, i))
+                        break
+                    i = i + 2
+                if i == (number // 2) + 1:
+                    print("{}={}*{}".format(number, number, 1))
+    except (IndexError):
+        pass
+
+
+factorize()
